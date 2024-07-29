@@ -2,5 +2,17 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import { setupStore } from './store'
+import { setupRouter } from './router'
 
-createApp(App).mount('#app')
+setup()
+
+function setup() {
+  const app = createApp(App)
+
+  setupRouter(app)
+
+  setupStore(app)
+
+  app.mount('#app')
+}

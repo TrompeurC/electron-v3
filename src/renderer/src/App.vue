@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { request } from './request';
+
+request({ url: '' }).then(console.log);
+
+
 </script>
 
 <template>
