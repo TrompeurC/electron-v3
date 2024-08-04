@@ -15,6 +15,12 @@
       ],
       "@store/*": [
         "src/renderer/src/store/*"
+      ],
+      "@views/*": [
+        "src/render/src/views/*"
+      ],
+      "@components/*": [
+        "src/render/src/components/*"
       ]
     }
   }

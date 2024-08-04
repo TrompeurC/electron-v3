@@ -1,5 +1,12 @@
 import  axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
+
+export interface ResponseType <T = any> {
+  code: string
+  msg: string
+  data?: T
+}
+
 const instance = axios.create({
   baseURL: '/api',
   timeout: 5 * 1000
@@ -20,4 +27,6 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 })
 
 
-export const request = instance
+export const request = <T>(params) => {
+  return instance(params) as any as ResponseType<T>
+}

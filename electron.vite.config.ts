@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 import vue from '@vitejs/plugin-vue'
+import vuetify from 'vite-plugin-vuetify'
 
 export default defineConfig({
   main: {
@@ -14,6 +15,8 @@ export default defineConfig({
       alias: {
         '@renderer': resolve('src/renderer/src'),
         '@store': resolve('src/renderer/store'),
+        '@views': resolve('src/renderer/views'),
+        '@components': resolve('src/renderer/components'),
       }
     },
     server: {
@@ -25,6 +28,7 @@ export default defineConfig({
         }
       }
     },
-    plugins: [vue()]
+    plugins: [vue(),
+    vuetify({ autoImport: true })]
   }
 })
