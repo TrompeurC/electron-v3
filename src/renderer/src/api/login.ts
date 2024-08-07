@@ -19,3 +19,21 @@ export const loginByAccount = (data) => {
     data
   })
 }
+
+//登录动态验证码
+export const loginCaptcha = ( data )=>{
+	return request({
+    url:'/captcha/sendRegisterOrLoginCaptcha',
+    method: "get",
+    params:data
+  })
+}
+
+//手机验证码登录
+export const loginByMobile = ( data )=>{
+	return request({
+    method: "post",
+    url:'/u/loginByMobile' ,
+    data
+  } )
+}

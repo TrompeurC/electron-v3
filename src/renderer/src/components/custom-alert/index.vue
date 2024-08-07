@@ -26,7 +26,7 @@ const deleteAlert = (id: string) => {
 <template>
   <div class="alert-container">
     <v-alert class="v-alert" v-for="(alert, index) in Array.from(alertMap.values())" :key="index" :type="alert.type"
-      border="start" variant="flat" closable :text="alert.message">
+      variant="flat" closable :text="alert.message">
     </v-alert>
   </div>
 </template>
