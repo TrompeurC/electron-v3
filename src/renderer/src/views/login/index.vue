@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import LoginPanel from './components/login-panel.vue'
+import useDrag from '@renderer/hooks/useDrag'
+
+
+const loginRef = ref<HTMLDivElement>()
+
+useDrag(loginRef)
+
 </script>
 
 <template>
-  <div class="login">
+  <div class="login" ref="loginRef">
     <div class="login-info">
       <div class="login-info__top login-text">
         <h2 class="text-white  font-bold text-xl leading-8">客户关系管理系统</h2>
