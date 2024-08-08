@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useAppConfig } from './store/useAppConfig';
+import { useAppStore } from './store/useAppStore';
 
-const appConfig = useAppConfig()
+const appConfig = useAppStore()
 </script>
 
 <template>

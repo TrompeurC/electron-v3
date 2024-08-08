@@ -10,5 +10,6 @@ export default defineStore('user', () => {
     setToken
   }
 }, {
-  persist: true
+  persist: true,
+
 })

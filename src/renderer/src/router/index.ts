@@ -11,7 +11,8 @@ export function setupRouter (app: App) {
     history: createWebHistory(import.meta.url),
     routes: routes
   })
+  app.use(router)
+
   router.beforeEach(beforeEach)
   router.afterEach(afterEach)
-  app.use(router)
 }

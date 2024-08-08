@@ -26,6 +26,18 @@ instance.interceptors.response.use((response: AxiosResponse) => {
   return Promise.reject(err)
 })
 
+export const http = {
+  async get<T>(url: string , params: Record<string, any> = {}, config: Record<string, any> = {}): Promise<ResponseType<T>> {
+    return await instance.get(url , {
+      params,
+      ...config
+    })
+  },
+  async post<T>(url: string, data: Record<string, any> = {}, config: Record<string, any> = {}): Promise<ResponseType<T>> {
+    return await instance.post(url, data, config)
+  }
+}
+
 
 export const request = <T>(params) => {
   return instance(params) as any as ResponseType<T>

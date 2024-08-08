@@ -15,9 +15,6 @@ setup()
 function setup() {
   const app = createApp(App)
 
-  // 初始化路由
-  setupRouter(app)
-
   // 初始化组件
   setupVuetify(app)
   // 初始化公共组件
@@ -25,7 +22,11 @@ function setup() {
 
   // 初始化pinia
   setupStore(app)
-    // 初始化i18n
+
+  // 初始化路由
+  setupRouter(app)
+
+  // 初始化i18n
   setupI18n(app)
 
   app.mount('#app')
