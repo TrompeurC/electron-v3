@@ -1,8 +1,14 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 
 export default defineStore('user', () => {
-  return {}
+  const token = ref('')
+  const setToken = (val: string) => token.value = val
+  return {
+    token,
+    setToken
+  }
 }, {
   persist: true
 })

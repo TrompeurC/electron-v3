@@ -5,6 +5,7 @@ import { reactive } from 'vue';
 import { VForm } from 'vuetify/lib/components/index.mjs';
 import { Encrypt } from '@renderer/utils/aes'
 import { warningAlert } from '@renderer/components/custom-alert/alert';
+import { getCurrentInstance } from 'vue';
 
 interface LoginFormType {
   username: string
@@ -13,6 +14,7 @@ interface LoginFormType {
   captcha: string
 }
 
+const { proxy } = getCurrentInstance()!
 
 const accountForm = reactive<LoginFormType>({
   username: '',
@@ -23,24 +25,24 @@ const accountForm = reactive<LoginFormType>({
 const captchaUrl = ref<string>('')
 const formRef = ref<InstanceType<typeof VForm>>()
 const rememberPassword = ref(false)
-const accountRules = {
+const accountRules = reactive({
   username: [(value: string) => {
-    if (!value) return '请输入账号'
+    if (!value) return proxy!.$t('login.accountTip')
     return true
   }],
   password: [
     (value: string) => {
-      if (!value) return '请输入密码'
+      if (!value) return proxy!.$t('login.passwordTip')
       return true
     }
   ],
   captcha: [
     (value: string) => {
-      if (!value) return '请输入验证码'
+      if (!value) return proxy!.$t('login.captchaTip')
       return true
     }
   ]
-}
+})
 const initCaptcha = async () => {
   const key = Date.now().toString()
   const res = await getCaptcha({ key })
@@ -78,21 +80,22 @@ initCaptcha()
     <v-sheet class="mx-auto" width="300">
       <v-form @submit.prevent ref="formRef">
         <v-text-field variant="solo-filled" v-model="accountForm.username" :rules="accountRules.username"
-          label="账号"></v-text-field>
+          :label="$t('login.account')"></v-text-field>
         <v-text-field variant="solo-filled" type="password" v-model="accountForm.password"
-          :rules="accountRules.password" label="密码"></v-text-field>
+          :rules="accountRules.password" :label="$t('login.password')"></v-text-field>
         <div class="flex gap-2 items-center">
           <v-text-field variant="solo-filled" v-model="accountForm.captcha" :rules="accountRules.captcha"
-            label="验证码"></v-text-field>
+            :label="$t('login.captcha')"></v-text-field>
           <!-- <v-img @click="getCaptcha" :width="60" cover :src="captchaUrl"></v-img> -->
           <img @click="initCaptcha" :src="captchaUrl" class="w-[100px] h-[50px] mb-4 cursor-pointer" alt="">
         </div>
 
         <div class="account-opt flex justify-between items-center">
-          <v-checkbox v-model:model-value="rememberPassword" label="记住密码"></v-checkbox>
-          <span class="forget-password cursor-pointer">忘记密码?</span>
+          <v-checkbox v-model:model-value="rememberPassword" :label="$t('login.rememberPassword')"></v-checkbox>
+          <span class="forget-password cursor-pointer">{{ $t('login.forgetPassword') }}?</span>
         </div>
-        <v-btn color="indigo-darken-3" @click="handleSubmit" class="mt-2" type="submit" block>登录</v-btn>
+        <v-btn color="indigo-darken-3" @click="handleSubmit" class="mt-2" type="submit" block>{{
+          $t('login.signIn') }}</v-btn>
       </v-form>
     </v-sheet>
 

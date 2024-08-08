@@ -12,11 +12,11 @@ const activeTab = ref<PanelType>('account')
 
 <template>
   <div class="w-96">
-    <div class="mb-3 text-center font-bold">客户关系管理系统</div>
+    <div class="mb-3 text-center font-bold">{{ $t('login.info') }}</div>
     <v-card>
       <v-tabs alignTabs="center" v-model="activeTab" color="deep-purple-accent-4">
-        <v-tab :value="'account'">账号登录</v-tab>
-        <v-tab :value="'phone'">手机登录</v-tab>
+        <v-tab :value="'account'">{{ $t('login.accountLogin') }}</v-tab>
+        <v-tab :value="'phone'">{{ $t('login.mobileLogin') }}</v-tab>
       </v-tabs>
 
       <v-card-text>
@@ -35,7 +35,7 @@ const activeTab = ref<PanelType>('account')
     <div class="login-more font-bold text-xs mt-3 flex items-center gap-2">
       <span class="login-panel-line"></span>
       <span class="text-gray-400">
-        其他登录方式
+        {{ $t('login.signInOther') }}
       </span>
       <span class="login-panel-line"></span>
     </div>

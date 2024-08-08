@@ -15,12 +15,12 @@ useDrag(loginRef)
     <header-tool />
     <div class="login-info">
       <div class="login-info__top login-text">
-        <h2 class="text-white  font-bold text-xl leading-8">客户关系管理系统</h2>
-        <p class="text-slate-300 text-sm leading-8">让业务再更高效，加速企业数字化升级。</p>
+        <h2 class="text-white  font-bold text-xl leading-8">{{ $t('login.info') }}</h2>
+        <p class="text-slate-300 text-sm leading-8">{{ $t('login.introduce') }}</p>
       </div>
       <img src="../../assets/images/data.png" alt="">
       <div class="login-info__bottom text-slate-300 text-sm leading-8 ">
-        © 客户关系管理系统 1.0.0
+        © {{ $t('login.info') }} 1.0.0
       </div>
     </div>
     <div class="login-panel flex justify-center items-center">
@@ -46,7 +46,8 @@ useDrag(loginRef)
     }
 
     &__bottom {
-      padding: 100px 40px 20px 40px;
+      @apply absolute bottom-10;
+      padding: 0px 40px;
     }
   }
 
