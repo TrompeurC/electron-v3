@@ -11,7 +11,8 @@ useDrag(loginRef)
 </script>
 
 <template>
-  <div class="login" ref="loginRef">
+  <div class="login relative" ref="loginRef">
+    <header-tool />
     <div class="login-info">
       <div class="login-info__top login-text">
         <h2 class="text-white  font-bold text-xl leading-8">客户关系管理系统</h2>

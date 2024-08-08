@@ -5,6 +5,7 @@ declare global {
     electron: ElectronAPI
     api: {
       setWindowPosition(x: number , y: number): void
+      closeWin:()=> void
     }
   }
 }

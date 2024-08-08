@@ -5,6 +5,9 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {
   setWindowPosition(x: number , y: number) {
     electronAPI.ipcRenderer.send('setPosition', x, y)
+  },
+  closeWin() {
+    electronAPI.ipcRenderer.send('closeWin')
   }
 }
 
