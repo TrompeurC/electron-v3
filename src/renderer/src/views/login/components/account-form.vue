@@ -6,6 +6,7 @@ import { VForm } from 'vuetify/lib/components/index.mjs';
 import { Encrypt } from '@renderer/utils/aes'
 import { warningAlert } from '@renderer/components/custom-alert/alert';
 import { getCurrentInstance } from 'vue';
+import useLogin from '@renderer/hooks/useLogin';
 
 interface LoginFormType {
   username: string
@@ -63,7 +64,7 @@ const handleSubmit = async () => {
     password: Encrypt(accountForm.password),
   })
   if (res.code === '200') {
-
+    useLogin(res.data)
   } else {
     warningAlert(res.msg)
   }

@@ -7,6 +7,7 @@ const appConfig = useAppStore()
 <template>
   <v-app :theme="appConfig.theme">
     <RouterView />
-    <custom-alert></custom-alert>
+    <custom-alert />
+    <custom-loading />
   </v-app>
 </template>

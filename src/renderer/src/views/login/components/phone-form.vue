@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { loginByMobile, loginCaptcha } from '@renderer/api/login';
 import { errorAlert, successAlert, warningAlert } from '@renderer/components/custom-alert/alert';
+import useLogin from '@renderer/hooks/useLogin';
 import { Encrypt } from '@renderer/utils/aes';
 import { getCurrentInstance } from 'vue';
 import { reactive } from 'vue';
@@ -63,7 +64,7 @@ const handleSubmit = async () => {
     captcha: Encrypt(formData.value.captcha)
   })
   if (res.code === '200') {
-
+    useLogin(res.data)
   } else {
     warningAlert(res.msg)
   }

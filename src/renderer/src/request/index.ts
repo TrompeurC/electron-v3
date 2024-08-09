@@ -1,3 +1,4 @@
+import useUserStore from '@renderer/store/useUserStore'
 import  axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
 
@@ -14,6 +15,11 @@ const instance = axios.create({
 
 
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const token = useUserStore().token
+  if(token) {
+    // config.headers.Authorization = `Bearer ${token}`
+    config.headers.Authorization = `${token}`
+  }
   return config
 }, err => {
   return Promise.reject(err)
@@ -28,17 +34,17 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 
 export const http = {
   async get<T>(url: string , params: Record<string, any> = {}, config: Record<string, any> = {}): Promise<ResponseType<T>> {
-    return await instance.get(url , {
+    return instance.get(url , {
       params,
       ...config
     })
   },
   async post<T>(url: string, data: Record<string, any> = {}, config: Record<string, any> = {}): Promise<ResponseType<T>> {
-    return await instance.post(url, data, config)
+    return  instance.post(url, data, config)
   }
 }
 
 
-export const request = <T>(params) => {
+export const request = <T = any>(params) => {
   return instance(params) as any as ResponseType<T>
 }

@@ -14,8 +14,8 @@ export const beforeEach:NavigationGuardWithThis<unknown> = (to, form , next) => 
   if(to.path === '/login') {
     return next()
   }
-  const userConfig = useUserStore()
-  if(!userConfig.token) {
+  const userStore = useUserStore()
+  if(!userStore.token) {
     next('/login')
   } else {
     next()
